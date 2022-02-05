@@ -109,9 +109,6 @@ def rivers_by_station_number(stations, N):
     #Create a list for the first N entries:
     new_list = ordered_list[:N]
 
-    print(new_list)
-    print(ordered_list[:14])
-
     # If the Nth entry has the same number of stations as the (N+1)th station etc, then include it in the list
     carry_on = True
     z = 1
