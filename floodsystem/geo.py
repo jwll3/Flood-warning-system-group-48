@@ -51,10 +51,20 @@ def stations_by_distance(stations, p):
 
 
 def stations_within_radius(stations, centre, r):
-    """returns a list of all stations (type MonitoringStation) within the radius r, of centrepoint coordinate x"""
+    """Returns a list of all stations (type MonitoringStation) within the radius r, of centrepoint coordinate x"""
+
+    # Uses the function from exercise B to create a list of tuples of stations and distance from the coordinate
+    stations_distance_from_coord = stations_by_distance(stations, centre)
+    list_required = []
+    for entry in stations_distance_from_coord:
+        if entry[1] <= r:
+            list_required.append(entry[0].name)
+        else:
+            pass
+    return list_required
 
 
-from .utils import sorted_by_key  # noqa
+
 
 
 
