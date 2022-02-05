@@ -73,3 +73,52 @@ def rivers_with_station(stations):
 
 def rivers_by_station_number(stations, N):
     """Determines the N rivers with the greatest number of monitoring stations"""
+
+    # Form a list of river names
+    river_names_list = []
+    for i in range(len(stations)):
+        river_names_list.append(stations[i].river)
+
+    # Form the list of tuples
+    list_of_tuples = []
+
+    for j in range(len(river_names_list)):
+        jth_river = river_names_list[j]
+
+        jth_counter = 0
+        for k in range(len(river_names_list)):
+            if jth_river == river_names_list[k]:
+                jth_counter = jth_counter + 1
+            else:
+                pass
+
+        new_tuple = (jth_river, jth_counter)
+        list_of_tuples.append(new_tuple)
+
+    # Remove repeats
+    list_of_tuples_no_repeats = []
+    for m in range(len(list_of_tuples)):
+        if list_of_tuples[m] in list_of_tuples_no_repeats:
+            pass
+        else:
+            list_of_tuples_no_repeats.append(list_of_tuples[m])
+
+        # Order the List by number of stations
+    ordered_list = sorted_by_key(list_of_tuples_no_repeats, 1, True)
+
+    #Create a list for the first N entries:
+    new_list = ordered_list[:N]
+
+    print(new_list)
+    print(ordered_list[:14])
+
+    # If the Nth entry has the same number of stations as the (N+1)th station etc, then include it in the list
+    carry_on = True
+    z = 1
+    while carry_on == True:
+        if new_list[N-1][1] == ordered_list[N+z-1][1]:
+            new_list.append(ordered_list[N-z+1])
+            z = z+1
+        else: carry_on = False
+
+    return new_list
