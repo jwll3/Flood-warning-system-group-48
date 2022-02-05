@@ -12,7 +12,7 @@ import math
 
 
 def stations_by_distance(stations, p):
-    """Returns a list of tuples of stations and their distance from coordinate p, ordered by their distacne from p"""
+    """Returns a list of tuples of stations and their distance from coordinate p, ordered by their distance from p"""
 
     list_of_stations_by_distance = []
 
@@ -68,3 +68,11 @@ from .utils import sorted_by_key  # noqa
 
 def rivers_with_station(stations): 
     """"""
+
+
+
+
+
+# Task 1E is down here:
+
+def rivers_by_station_number(stations, N):
