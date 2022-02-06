@@ -85,7 +85,7 @@ def station_by_river(stations):
     for k in range(len(stations)):
         if stations[k].river in stations_to_river_dict:
             stations_to_river_dict[stations[k].river].append(stations[k].name)
-
+             
         else: 
             stations_to_river_dict[stations[k].river] = [stations[k].name]
     return stations_to_river_dict
