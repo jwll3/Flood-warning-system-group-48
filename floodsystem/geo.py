@@ -7,7 +7,7 @@ geographical data.
 """
 
 from winreg import DeleteValue
-from .utils import sorted_by_key  # noqa
+from utils import sorted_by_key  # noqa
 import math
 
 
@@ -73,9 +73,14 @@ def stations_within_radius(stations, centre, r):
 # Task 1D also goes below in this section
 
 def rivers_with_station(stations): 
-    """"""
-
-
+    """Returns the names of rivers with a monitoring station, from MonitorStation """
+    #put rivers into a set, so repeat entries are removed 
+    rivers = set()
+    for i in range(len(stations)):
+        rivers.append(stations.river) 
+    return rivers 
+        
+print(rivers_with_station())
 
 
 
