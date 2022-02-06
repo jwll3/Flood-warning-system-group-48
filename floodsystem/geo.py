@@ -7,7 +7,7 @@ geographical data.
 """
 
 from winreg import DeleteValue
-from utils import sorted_by_key  # noqa
+from .utils import sorted_by_key  # noqa
 import math
 
 
@@ -76,11 +76,20 @@ def rivers_with_station(stations):
     """Returns the names of rivers with a monitoring station, from MonitorStation """
     #put rivers into a set, so repeat entries are removed 
     rivers = set()
-    for i in range(len(stations)):
-        rivers.append(stations.river) 
+    for k in range(len(stations)):
+        rivers.add(stations[k].river) 
     return rivers 
-        
-print(rivers_with_station())
+
+def station_by_river(stations):                                                                 
+    stations_to_river_dict = {}
+    for k in range(len(stations)):
+        if stations[k].river in stations_to_river_dict:
+            stations_to_river_dict[stations[k].river].append(stations[k].name)
+
+        else: 
+            stations_to_river_dict[stations[k].river] = [stations[k].name]
+    return stations_to_river_dict
+
 
 
 
