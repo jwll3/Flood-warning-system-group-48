@@ -80,12 +80,16 @@ def rivers_with_station(stations):
         rivers.add(stations[k].river) 
     return rivers 
 
-def station_by_river(stations):                                                                 
+def station_by_river(stations): 
+    """creates a dictionary for each river and its coresponding stations"""
+    #creating a dictionary                                                                 
     stations_to_river_dict = {}
+
     for k in range(len(stations)):
+        #if the stations river is already in the dictionary, only append the name of the station
         if stations[k].river in stations_to_river_dict:
             stations_to_river_dict[stations[k].river].append(stations[k].name)
-             
+        #otherwise, the river is yet in the dictionary, so append both to the dictionary      
         else: 
             stations_to_river_dict[stations[k].river] = [stations[k].name]
     return stations_to_river_dict

@@ -9,12 +9,11 @@ for manipulating/modifying station data
 
 from pandas import isnull
 
-
 class MonitoringStation:
     """This class represents a river level monitoring station"""
 
     def __init__(self, station_id, measure_id, label, coord, typical_range,
-                 river, town):
+                 river, town, consistency):
 
         self.station_id = station_id
         self.measure_id = measure_id
@@ -29,9 +28,9 @@ class MonitoringStation:
         self.typical_range = typical_range
         self.river = river
         self.town = town
-
+        self.consistency=consistency##############
         self.latest_level = None
-
+    
     def __repr__(self):
         d = "Station name:     {}\n".format(self.name)
         d += "   id:            {}\n".format(self.station_id)
@@ -40,25 +39,29 @@ class MonitoringStation:
         d += "   town:          {}\n".format(self.town)
         d += "   river:         {}\n".format(self.river)
         d += "   typical range: {}".format(self.typical_range)
+        d += "consistency       {}\n".format(self.consistency) ##############
         return d
-    """
+    
     def typical_range_consistent(self):
-        if isnull(self) = False:
-            consistency = False 
-        elif #typical high ranfge is less than typical low range: 
-            consistency = False 
+        if isnull(self.typical_range) == False:
+            self.consistency = False 
+        elif self.typical_range[0] <= self.typical_range[1]: 
+            self.consistency = False 
         else: 
-            consistency = True
+            self.consistency = True
+        return self.consistency
 
-#not quite sure how to get isnull to work 
-#do i need to put the above into __repr__ 
+  
+
 
 def inconsistent_typical_range_stations(stations):
     inconsistent_stations = []
-    for station in stations: 
-        if self.consistency = false: 
-            inconsistent_stations.append(station)   
+    for k in range(len(stations)): 
+        if stations[k].consistency == False: 
+            inconsistent_stations.append(stations[k])   
         else: 
             pass 
+    
+    return inconsistent_stations
 
-    """
+
