@@ -13,7 +13,7 @@ class MonitoringStation:
     """This class represents a river level monitoring station"""
 
     def __init__(self, station_id, measure_id, label, coord, typical_range,
-                 river, town, consistency):
+                 river, town):
 
         self.station_id = station_id
         self.measure_id = measure_id
@@ -28,7 +28,6 @@ class MonitoringStation:
         self.typical_range = typical_range
         self.river = river
         self.town = town
-        self.consistency=consistency##############
         self.latest_level = None
     
     def __repr__(self):
@@ -39,29 +38,35 @@ class MonitoringStation:
         d += "   town:          {}\n".format(self.town)
         d += "   river:         {}\n".format(self.river)
         d += "   typical range: {}".format(self.typical_range)
-        d += "consistency       {}\n".format(self.consistency) ##############
         return d
     
     def typical_range_consistent(self):
-        if isnull(self.typical_range) == False:
-            self.consistency = False 
-        elif self.typical_range[0] <= self.typical_range[1]: 
-            self.consistency = False 
+        """check if a station is inconsistent my returning false if there is either no typical range 
+        or if the typical high range is less than the typical low """
+        #check to see if there is a typical range
+        if self.typical_range is None:
+            return False 
+        #check to see if typical high range is less than the typical low 
+        elif self.typical_range[0] >= self.typical_range[1]: 
+            return False 
+        #otherwise fine 
         else: 
-            self.consistency = True
-        return self.consistency
-
-  
+            return True
+        
 
 
 def inconsistent_typical_range_stations(stations):
+    """function that makes a list of inconsistent stations"""
+    #list of inconsistent stations 
     inconsistent_stations = []
-    for k in range(len(stations)): 
-        if stations[k].consistency == False: 
-            inconsistent_stations.append(stations[k])   
+    #if a station is inconsistent (returning false from typical_range_consistent) then it is added to the list 
+    for station in stations: 
+        if MonitoringStation.typical_range_consistent(station) is False: 
+            inconsistent_stations.append(station.name)   
         else: 
             pass 
     
+    #sort the list alphabetically 
     return inconsistent_stations
 
 
