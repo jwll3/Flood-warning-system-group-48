@@ -7,7 +7,7 @@ for manipulating/modifying station data
 """
 
 
-from pandas import isnull
+#from pandas import isnull
 
 class MonitoringStation:
     """This class represents a river level monitoring station"""
