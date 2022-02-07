@@ -16,14 +16,4 @@ def test_rivers_with_station(stations):
 
 def test_station_by_river(stations):
     """test that """
-
-
-"""    
-    if len(rivers_list) == len (rivers_set): 
-        return "No river is a duplicate entry in rivers_with_station"
-    else:
-        return "There are duplicate entries in rivers_with_station" 
-
-print(test_rivers_with_station(stations))
-"""
-
+    
