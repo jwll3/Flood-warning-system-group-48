@@ -41,9 +41,24 @@ class MonitoringStation:
         d += "   river:         {}\n".format(self.river)
         d += "   typical range: {}".format(self.typical_range)
         return d
-"""
+    """
     def typical_range_consistent(self):
-       return isnull(d) 
+        if isnull(self) = False:
+            consistency = False 
+        elif #typical high ranfge is less than typical low range: 
+            consistency = False 
+        else: 
+            consistency = True
 
-def inconsistent_typical_range_stations(stations): 
-"""    
+#not quite sure how to get isnull to work 
+#do i need to put the above into __repr__ 
+
+def inconsistent_typical_range_stations(stations):
+    inconsistent_stations = []
+    for station in stations: 
+        if self.consistency = false: 
+            inconsistent_stations.append(station)   
+        else: 
+            pass 
+
+    """
