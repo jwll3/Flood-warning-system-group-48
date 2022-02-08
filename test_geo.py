@@ -14,6 +14,5 @@ def test_rivers_with_station(stations):
     #test if the lengh of the list and set are the same (if they are the same- no duplicate entries)
     assert len(rivers_list) == len(rivers_set)
 
-def test_station_by_river(stations):
-    """test that """
+
     
