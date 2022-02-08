@@ -71,7 +71,7 @@ def test_inconsistent_typical_range_stations():
     for station in list_of_inconsistent_stations:
         assert MonitoringStation.typical_range_consistent(station) is False 
     
-    
+
     """
     for i in range(len(list_of_inconsistent_stations)):
         assert MonitoringStation.typical_range_consistent(list_of_inconsistent_stations[i]) is False 
