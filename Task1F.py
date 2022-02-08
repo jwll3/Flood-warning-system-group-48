@@ -8,6 +8,7 @@ stations= build_station_list()
 def run():
     """Requirements for Task 1F"""
     list_of_inconsistent_stations = inconsistent_typical_range_stations(stations)
+    #sort the list alphabetically, and then print 
     print (sorted(list_of_inconsistent_stations))
 
 if __name__ == "__main__":
