@@ -66,14 +66,4 @@ def test_inconsistent_typical_range_stations():
     """test that there are fewer inconsistent stations than total stations"""
     list_of_inconsistent_stations = inconsistent_typical_range_stations(stations)
     assert len(list_of_inconsistent_stations) < len(stations)
-
-    """assert that every station in list_of_inconsistent_stations returens false"""
-    for station in list_of_inconsistent_stations:
-        assert MonitoringStation.typical_range_consistent(station) is False 
-    
-
-    """
-    for i in range(len(list_of_inconsistent_stations)):
-        assert MonitoringStation.typical_range_consistent(list_of_inconsistent_stations[i]) is False 
-    """
     
