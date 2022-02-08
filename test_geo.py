@@ -5,7 +5,7 @@ from floodsystem.stationdata import build_station_list
 stations = build_station_list()
 
 
-def test_rivers_with_station(stations):
+def test_rivers_with_station():
     """test that rivers_with_station only returns each river once"""
     #turn the rivers_with_station set list  
     rivers_list = list(rivers_with_station(stations))  
