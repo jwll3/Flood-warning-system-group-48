@@ -6,7 +6,7 @@ geographical data.
 
 """
 
-from winreg import DeleteValue
+#from winreg import DeleteValue
 from .utils import sorted_by_key  # noqa
 import math
 
