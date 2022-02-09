@@ -25,7 +25,8 @@ def test_station_by_river():
 def test_stations_by_distance():
     """Test whether stations_by_distance has the list ordered correctly"""
     
-    listed_stations = stations_by_distance(stations)
+    p = (52.2053, 0.1218)
+    listed_stations = stations_by_distance(stations, p)
     assert sorted_by_key(listed_stations, 1) == listed_stations
  
     stations_list = list(listed_stations)  
