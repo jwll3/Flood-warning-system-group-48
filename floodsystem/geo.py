@@ -24,11 +24,8 @@ def stations_by_distance(stations, p):
         phi_2 = stations[i].coord[0] *(math.pi/180)
         delta_phi = (phi_1 - phi_2)
         delta_lambda = (p[1] - stations[i].coord[1])*(math.pi/180)
-
         a = (math.sin(delta_phi / 2))**2 + math.cos(phi_1) * math.cos(phi_2) * ((math.sin(delta_lambda / 2))**2)
-
         c = 2*math.atan2((a**(0.5)), ((1-a)**(0.5)))
-
         distance = 6371 * c
 
         ith_station = (stations[i], distance)
@@ -42,13 +39,8 @@ def stations_by_distance(stations, p):
 
     return sorted_list
 
+
     
-
-        
-
-
-
-
 
 def stations_within_radius(stations, centre, r):
     """Returns a list of all stations (type MonitoringStation) within the radius r, of centrepoint coordinate x"""
@@ -65,12 +57,6 @@ def stations_within_radius(stations, centre, r):
 
 
 
-
-
-
-
-
-# Task 1D also goes below in this section
 
 def rivers_with_station(stations): 
     """Returns the names of rivers with a monitoring station, from MonitorStation """
@@ -96,8 +82,6 @@ def station_by_river(stations):
 
 
 
-
-# Task 1E is down here:
 
 def rivers_by_station_number(stations, N):
     """Determines the N rivers with the greatest number of monitoring stations"""
