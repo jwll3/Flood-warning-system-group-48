@@ -54,14 +54,19 @@ class MonitoringStation:
             return True
 
     def relative_water_level(self): 
-        if self.typical_range is None:
-            return None  
-        #check to see if typical high range is less than the typical low 
+        """Function that returns fraction of typical range, e.g. 1.0 for a typical high and 0.0 for a typical low"""
+        if (self.typical_range is None) or (self.latest_level is None):
+            return None        
         elif self.typical_range[0] >= self.typical_range[1]: 
-            return None  
-        #otherwise fine 
-        else: 
-            pass           
+            return None        
+
+        else:
+
+            mag_range = self.typical_range[1] - self.typical_range[0]
+            water_level_fraction = (self.latest_level - self.typical_range[0]) / mag_range
+        
+            return water_level_fraction
+
 
 
 def inconsistent_typical_range_stations(stations):

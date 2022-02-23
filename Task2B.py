@@ -1,0 +1,28 @@
+from floodsystem.stationdata import build_station_list, update_water_levels
+
+
+def run():
+    # Build list of stations
+    stations = build_station_list()
+
+    # Update latest level data for all stations
+    update_water_levels(stations)
+
+    # Print station and latest level for first 5 stations in list
+    names = [
+        'Bourton Dickler', 'Surfleet Sluice', 'Gaw Bridge', 'Hemingford',
+        'Swindon'
+    ]
+    for station in stations:
+        #print(station.latest_level)
+
+        print(station.relative_water_level())
+        
+
+
+
+
+
+if __name__ == "__main__":
+    print("*** Task 2A: CUED Part IA Flood Warning System ***")
+    run()
