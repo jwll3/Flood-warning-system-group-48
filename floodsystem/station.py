@@ -52,7 +52,16 @@ class MonitoringStation:
         #otherwise fine 
         else: 
             return True
-        
+
+    def relative_water_level(self): 
+        if self.typical_range is None:
+            return None  
+        #check to see if typical high range is less than the typical low 
+        elif self.typical_range[0] >= self.typical_range[1]: 
+            return None  
+        #otherwise fine 
+        else: 
+            pass           
 
 
 def inconsistent_typical_range_stations(stations):
