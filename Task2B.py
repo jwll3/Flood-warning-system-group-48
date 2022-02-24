@@ -1,5 +1,5 @@
 from floodsystem.stationdata import build_station_list, update_water_levels
-
+from floodsystem.flood import stations_level_over_threshold
 
 def run():
     # Build list of stations
@@ -8,16 +8,14 @@ def run():
     # Update latest level data for all stations
     update_water_levels(stations)
 
-    # Print station and latest level for first 5 stations in list
-    names = [
-        'Bourton Dickler', 'Surfleet Sluice', 'Gaw Bridge', 'Hemingford',
-        'Swindon'
-    ]
-    for station in stations:
-        #print(station.latest_level)
+    tol = 0.8
 
-        print(station.relative_water_level())
-        
+    list_created = stations_level_over_threshold(stations, tol)
+
+    for x in range(len(list_created)):
+
+        print(list_created[x][0].name, list_created[x][1])
+
 
 
 
