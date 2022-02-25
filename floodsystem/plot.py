@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 
 
 def plot_water_levels(station, dates, levels):
- 
+    """Returns a list of tuples with the station and relative water level"""
 
     highs = []
     lows = []
@@ -28,8 +28,6 @@ def plot_water_levels(station, dates, levels):
     # Plot
     plt.plot(dates, levels)
     
-
-
 
     # Add axis labels, rotate date labels and add plot title
     plt.xlabel('date')
