@@ -20,16 +20,25 @@ def plot_water_levels(station, dates, levels):
     dates, levels = fetch_measure_levels(
         station.measure_id, dt=timedelta(days=dt))
 
+    t = []
+    levels = []
+
     # Print level history
     for date, level in zip(dates, levels):
         print(date, level)
+        t.append(date)
+        levels.append(level)
 
 
+    
 
     tt = [datetime(2016, 12, 30), datetime(2016, 12, 31), datetime(2017, 1, 1),
         datetime(2017, 1, 2), datetime(2017, 1, 3), datetime(2017, 1, 4),
         datetime(2017, 1, 5)]
     level = [0.2, 0.7, 0.95, 0.92, 1.02, 0.91, 0.64]
+
+    print(tt)
+
 
     # Plot
     plt.plot(tt, level)
