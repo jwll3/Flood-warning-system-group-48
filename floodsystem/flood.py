@@ -19,11 +19,17 @@ def stations_level_over_threshold(stations, tol):
 
 
 def stations_highest_rel_level(stations, N): 
+    
     dictionary_of_stations_to_level = {}
-    highest_relative_stations_list = []
-    for station in stations: 
-        dictionary_of_stations_to_level[station] = station.relative_water_level()    
+    for station in stations:
+        if station.relative_water_level() is not None:   
+            dictionary_of_stations_to_level[station] = station.relative_water_level()   
+        
+    sort_dictionary_of_stations_to_level = sorted(dictionary_of_stations_to_level.items(), key=lambda x:x[1], reverse=True)
+    #return sort_dictionary_of_stations_to_level
+    n= int(N) 
+    for i in range(N): 
+        return sort_dictionary_of_stations_to_level(i[0],i[1]) 
 
-        "need to sort dictionary by relative frection"
-        "return first n things from that dictionary"  
+
 
