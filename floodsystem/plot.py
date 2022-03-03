@@ -43,8 +43,9 @@ def plot_water_levels(station, dates, levels):
 
 
 def plot_water_level_with_fit(station, dates, levels, p): 
-
+    "Creates a plot of the water level along with typical range, and a polynomial op best fit "
     #create a list for the high and low typical range, so it can be plotted on the graph 
+    
     low =[]
     high=[]
     for i in range(len(dates)):
@@ -53,12 +54,12 @@ def plot_water_level_with_fit(station, dates, levels, p):
     for i in range(len(dates)):
         high.append(station[0].typical_range[1])
     
-    # Create set of 10 data points on interval (1000, 1002)
+    # Create set of x and y datapoints from dates and level 
     float_dates = matplotlib.dates.date2num(dates)
     x = np.linspace(float_dates[0], float_dates[-1], len(levels))
     y = levels 
     # Using shifted x values, find coefficient of best-fit
-    # polynomial f(x) of degree 4
+    # polynomial f(x) of degree p
     p_coeff = np.polyfit(x - x[0], y, p)
 
     # Convert coefficient into a polynomial that can be evaluated
@@ -73,17 +74,17 @@ def plot_water_level_with_fit(station, dates, levels, p):
     x1 = np.linspace(x[0], x[-1], 30)
     plt.plot(x1, poly(x1 - x[0]))
     station = station 
-    # Display plot
+    # Add labels 
     plt.xlabel('Time (over 2 days)')
     plt.ylabel('water level (m)')
     plt.xticks(rotation=45);
     plt.title(station[0].name) 
-    
+    #add typical low and high lines 
     plt.plot(dates, high, label="Typical high level")
  
     plt.plot(dates, low, label="Typical low level")
 
-
+    #show plot 
     plt.show()
 
     """
