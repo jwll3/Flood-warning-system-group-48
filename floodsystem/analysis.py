@@ -4,12 +4,59 @@ import matplotlib.pyplot as plt
 
 
 
+def polyfit(dates,levels,p):
+    
+    x = matplotlib.dates.date2num(dates)
+    y = levels 
+
+    # Using shifted x values, find coefficient of best-fit
+    # polynomial f(x) of degree 4
+    p_coeff = np.polyfit(x - x[0], y, p)
+
+    # Convert coefficient into a polynomial that can be evaluated
+    # e.g. poly(0.3)
+    poly = np.poly1d(p_coeff)
+    d0 = x[0]
+    # Plot original data points
+    #plt.plot(x, y, '.')
+
+    # Plot polynomial fit at 30 points along interval (note that polynomial
+    # is evaluated using the shift x)
+    x1 = np.linspace(x[0], x[-1], 30)
+    #plt.plot(x1, poly(x1 - x[0]))
+
+    return poly, d0 
+    
+    """
+    x = matplotlib.dates.date2num(dates)
+    y = levels 
+
+    # Using shifted x values, find coefficient of best-fit
+    # polynomial f(x) of degree 4
+    p_coeff = np.polyfit(x - x[0], y, p)
+
+    # Convert coefficient into a polynomial that can be evaluated
+    # e.g. poly(0.3)
+    poly = np.poly1d(p_coeff)
+    d0 = x[0]
+    # Plot original data points
+    #plt.plot(x, y, '.')
+
+    # Plot polynomial fit at 30 points along interval (note that polynomial
+    # is evaluated using the shift x)
+    x1 = np.linspace(x[0], x[-1], 30)
+    #plt.plot(x1, poly(x1 - x[0]))
+
+    return poly, d0 
+    """
+
+"""
 
 def polyfit(dates,levels,p):
-    float_dates = matplotlib.dates.date2num(dates)
+    x = matplotlib.dates.date2num(dates)
     
     # Find coefficients of best-fit polynomial f(x) of degree 4
-    p_coeff = np.polyfit(float_dates, levels, p)
+    p_coeff = np.polyfit(x-x[0], levels, p)
 
     # Convert coefficient into a polynomial that can be evaluated,
     # e.g. poly(0.3)
@@ -20,19 +67,16 @@ def polyfit(dates,levels,p):
 
     # Plot polynomial fit at 30 points along interval (note that polynomial
     # is evaluated using the shift x)
-    x1 = np.linspace(dates[0], dates[-1], 30)
+    x1 = np.linspace(x[0], x[-1], 30)
     #plt.plot(x1, poly(x1 - dates[0]))
-
-    # Display plot
-    #plt.show()
 
     return poly, x1 
     
+"""
 
 
 
-
-
+"""
 
 # Create set of 10 data points on interval (0, 2)
 x = np.linspace(0, 2, 10)
@@ -55,4 +99,4 @@ plt.plot(x1, poly(x1))
 # Display plot
 plt.show()
 
-
+"""

@@ -21,9 +21,33 @@ def stations_level_over_threshold(stations, tol):
 
 
 def stations_highest_rel_level(stations, N): 
-   
-    dictionary_of_stations_to_level = {}
+
+    stations_with_relative_level = stations_level_over_threshold(stations, 0)
+
+    top_stations_with_relative_level = []
+
+    #print(stations_with_relative_level)
+    n = int(N)
+    for x in range(n):
+        neww_tuple = (stations_with_relative_level[x][0].name, stations_with_relative_level[x][1])
+        top_stations_with_relative_level.append(neww_tuple)
+
+    #top_N_stations_with_relative_level = []
+
+    #for i in range(N):
+
+    
+    return top_stations_with_relative_level
+
+
+    
     """
+    dictionary_of_stations_to_level = {}
+    
+    for x in range(len(stations_with_relative_level)):
+        neww_tuple = (stations_with_relative_level[x][0].name, stations_with_relative_level[x][1])
+        top_stations_with_relative_level.append(neww_tuple)
+
     for station in stations:
         #if (station.typical_range() is None):
         if station.typical_range_consistent() is False: 
@@ -36,12 +60,12 @@ def stations_highest_rel_level(stations, N):
     sort_dictionary_of_stations_to_level = sorted(dictionary_of_stations_to_level.items(), key=lambda x:x[1], reverse=True)
     #sort_dictionary_of_stations_to_level2 = sorted(dictionary_of_stations_to_level) 
     #return sort_dictionary_of_stations_to_level
-    """
+    
     for k in range(len(stations)):
         if stations[k].typical_range_consistent() is False:
             pass
         else:
-            dictionary_of_stations_to_level[stations[k].name] += [stations[k].relative_water_level()]
+            dictionary_of_stations_to_level[stations[k].name] = [stations[k].relative_water_level()]
 
     n=int(N)
     first_N_highest_rel_level = []
@@ -50,7 +74,7 @@ def stations_highest_rel_level(stations, N):
     for i in range(n):
         first_N_highest_rel_level.append(sort_dictionary_of_stations_to_level(i[0],i[1]))
 
-        
+    return dictionary_of_stations_to_level
     return first_N_highest_rel_level
 
 
@@ -61,7 +85,7 @@ def stations_highest_rel_level(stations, N):
     #return first_N_highest_rel_level
   
 
-    """
+    
     dictionary_of_stations_to_level = {"test":1}
     test=()
 

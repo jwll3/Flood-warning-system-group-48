@@ -43,11 +43,69 @@ def plot_water_levels(station, dates, levels):
 
 
 def plot_water_level_with_fit(station, dates, levels, p): 
+    
+    # Create set of 10 data points on interval (1000, 1002)
+    float_dates = matplotlib.dates.date2num(dates)
+    x = np.linspace(float_dates[0], float_dates[-1], len(levels))
+    y = levels 
+    # Using shifted x values, find coefficient of best-fit
+    # polynomial f(x) of degree 4
+    p_coeff = np.polyfit(x - x[0], y, p)
 
+    # Convert coefficient into a polynomial that can be evaluated
+    # e.g. poly(0.3)
+    poly = np.poly1d(p_coeff)
+
+    # Plot original data points
+    plt.plot(x, y, '.')
+
+    # Plot polynomial fit at 30 points along interval (note that polynomial
+    # is evaluated using the shift x)
+    x1 = np.linspace(x[0], x[-1], 30)
+    plt.plot(x1, poly(x1 - x[0]))
+    station = station 
+    # Display plot
+    plt.xlabel('Time (over 2 days)')
+    plt.ylabel('water level (m)')
+    plt.xticks(rotation=45);
+    plt.title(station.name) 
+    
+    plt.show()
+
+    """
+    # Create set of 10 data points on interval (1000, 1002)
+    float_dates = matplotlib.dates.date2num(dates)
+    x = np.linspace(float_dates[0], float_dates[-1], len(levels))
+    y = levels 
+    # Using shifted x values, find coefficient of best-fit
+    # polynomial f(x) of degree 4
+    p_coeff = np.polyfit(x - x[0], y, p)
+
+    # Convert coefficient into a polynomial that can be evaluated
+    # e.g. poly(0.3)
+    poly = np.poly1d(p_coeff)
+
+    # Plot original data points
+    plt.plot(x, y, '.')
+
+    # Plot polynomial fit at 30 points along interval (note that polynomial
+    # is evaluated using the shift x)
+    x1 = np.linspace(x[0], x[-1], 30)
+    plt.plot(x1, poly(x1 - x[0]))
+    station = station 
+    # Display plot
+    plt.xlabel('date')
+    plt.ylabel('Time (over 2 days)')
+    plt.xticks(rotation=45);
+    plt.title(station[0]) 
+    
+    plt.show()
+    """
+    """
     float_dates = matplotlib.dates.date2num(dates)
     
     # Find coefficients of best-fit polynomial f(x) of degree 4
-    p_coeff = np.polyfit(float_dates, levels, p)
+    p_coeff = np.polyfit(float_dates-float_dates[0], levels, p)
 
     # Convert coefficient into a polynomial that can be evaluated,
     # e.g. poly(0.3)
@@ -64,3 +122,28 @@ def plot_water_level_with_fit(station, dates, levels, p):
     # Display plot
     print ("this is the graph of" + str(station.name))
     plt.show()
+    
+
+    # Create set of 10 data points on interval (1000, 1002)
+    float_dates = matplotlib.dates.date2num(dates)
+    x = np.linspace(float_dates[0], float_dates[-1], 30)
+    y = levels 
+    # Using shifted x values, find coefficient of best-fit
+    # polynomial f(x) of degree 4
+    p_coeff = np.polyfit(x - x[0], y, p)
+
+    # Convert coefficient into a polynomial that can be evaluated
+    # e.g. poly(0.3)
+    poly = np.poly1d(p_coeff)
+
+    # Plot original data points
+    plt.plot(x, y, '.')
+
+    # Plot polynomial fit at 30 points along interval (note that polynomial
+    # is evaluated using the shift x)
+    x1 = np.linspace(x[0], x[-1], 30)
+    plt.plot(x1, poly(x1 - x[0]))
+
+    # Display plot
+    plt.show()    
+    """
