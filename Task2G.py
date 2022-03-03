@@ -20,8 +20,7 @@ def run():
     dt = 2
     dt = datetime.timedelta(hours=dt)
 
-    ##Create a list of tuples: station name and risk factor
-    stations_risk_factor = []
+    ##Create a list of tuples: station name and risk grading
     stations_risk_grading = []
 
     #this for loop is going to go through every station, and work out the rate of water level rise through backward differentiation
@@ -46,7 +45,6 @@ def run():
             
                 #work out the polyfit poly1d object for the polynomial 
                 coefficients = polyfit(dates,levels,4)
-                #print (coefficients) 
 
                 #extract just the coefficients of x^4, x^3 ect. from poly1d object 
                 terms = coefficients[0]
@@ -68,36 +66,29 @@ def run():
 
                 rate_of_water_level_rise = Numerical_backward_differentiation (First_term, Second_term, one_step_back) # gives a value of rise in water level per day accoring to latest reading and the one right before it 
 
-                #print(selected_stations[i][0].name)
-                #print (rate_of_water_level_rise) 
-
                 return rate_of_water_level_rise
 
             
 
-            ##Calculate the risk factor and append to the list.
+            # Weighting Factors for determining the risk factor
             K_1 = 10
             K_2 = 1
 
-            #risk_factor = (K_1 * rate_of_water_level_rise) + (K_2 * selected_stations[i][0].relative_water_level())
             risk_grading = "Undetermined"
 
-            ##Determine the risk gradings
-
+            
+            # Eliminating stations under a safe water level
             if selected_stations[i][0].relative_water_level() <= 0.8:
                 risk_grading = "No Risk"
                 
 
-
+            # Finding a risk factor for each station based on the current level and the rate of water level rise
             elif (selected_stations[i][0].relative_water_level() > 0.8):
                 rate_of_water_level_rise = find_rate_of_increase()
                 water_level = selected_stations[i][0].relative_water_level()
                 risk_factor = (K_1 * rate_of_water_level_rise) + (K_2 * water_level)
 
-                #print(selected_stations[i][0].name)
-                #print(rate_of_water_level_rise)
-                #print(water_level)
-                #print(risk_factor)
+
 
                 if (risk_factor >= 10) and (rate_of_water_level_rise > 0):
                     risk_grading = "severe"
@@ -117,28 +108,24 @@ def run():
                 elif (1.5 <= risk_factor <= 2) and (rate_of_water_level_rise < 0):
                     risk_grading = "low"
 
-                elif (risk_factor <= 1.5) and (rate_of_water_level_rise > 0):
+                elif (0 <= risk_factor <= 1.5) and (rate_of_water_level_rise > 0):
                     risk_grading = "low"
 
-                elif (risk_factor <= 2) and (rate_of_water_level_rise < 0):
+                elif (0 <= risk_factor <= 1.5) and (rate_of_water_level_rise < 0):
+                    risk_grading = "low"
+
+                elif (risk_factor <= 0):
                     risk_grading = "No Risk"
 
 
 
-            #factor_tuple_to_append = (selected_stations[i][0].name, risk_factor)
-            #stations_risk_factor.append(factor_tuple_to_append)
-
+            # Creates a list of tuples of station name and the corresponding risk grading
             if risk_grading == "No Risk":
                 pass
             else: 
                 grading_tuple_to_append = (selected_stations[i][0].name, risk_grading)
                 stations_risk_grading.append(grading_tuple_to_append)
 
-            
-            
-            #print(stations_risk_factor)
-
-            #plot_water_levels(selected_stations[i][0], dates, levels)
 
         except:
             pass
@@ -146,14 +133,6 @@ def run():
     print(stations_risk_grading)
 
 
-
-
-
-
-
-
 if __name__ == "__main__":
     print("*** Task 2G: CUED Part IA Flood Warning System ***")
     run()
-
-#test 
