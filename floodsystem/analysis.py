@@ -5,25 +5,19 @@ import matplotlib.pyplot as plt
 
 
 def polyfit(dates,levels,p):
-    
+    "returns d0, which is the shift applied to time axis to stop porly conditioned warnings"
+    "and also returns poly, which gives the coefficients to a polynomial of best fit for levels against time"
     x = matplotlib.dates.date2num(dates)
     y = levels 
 
     # Using shifted x values, find coefficient of best-fit
-    # polynomial f(x) of degree 4
+    # polynomial f(x) of degree p
     p_coeff = np.polyfit(x - x[0], y, p)
 
     # Convert coefficient into a polynomial that can be evaluated
     # e.g. poly(0.3)
     poly = np.poly1d(p_coeff)
     d0 = x[0]
-    # Plot original data points
-    #plt.plot(x, y, '.')
-
-    # Plot polynomial fit at 30 points along interval (note that polynomial
-    # is evaluated using the shift x)
-    x1 = np.linspace(x[0], x[-1], 30)
-    #plt.plot(x1, poly(x1 - x[0]))
 
     return poly, d0 
     
