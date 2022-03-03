@@ -43,6 +43,15 @@ def plot_water_levels(station, dates, levels):
 
 
 def plot_water_level_with_fit(station, dates, levels, p): 
+
+    #create a list for the high and low typical range, so it can be plotted on the graph 
+    low =[]
+    high=[]
+    for i in range(len(dates)):
+        low.append(station[0].typical_range[0])
+
+    for i in range(len(dates)):
+        high.append(station[0].typical_range[1])
     
     # Create set of 10 data points on interval (1000, 1002)
     float_dates = matplotlib.dates.date2num(dates)
@@ -68,8 +77,13 @@ def plot_water_level_with_fit(station, dates, levels, p):
     plt.xlabel('Time (over 2 days)')
     plt.ylabel('water level (m)')
     plt.xticks(rotation=45);
-    plt.title(station.name) 
+    plt.title(station[0].name) 
     
+    plt.plot(dates, high, label="Typical high level")
+ 
+    plt.plot(dates, low, label="Typical low level")
+
+
     plt.show()
 
     """
