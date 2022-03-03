@@ -19,7 +19,7 @@ def run():
 
     #set up stations and dates for functions 
     stations_list = stations_level_over_threshold(stations, 0)
-    selected_stations = stations_list[:5]
+    selected_stations = stations_list#[:5]
     dt = 2
     dt = datetime.timedelta(days=dt)
     """
@@ -33,14 +33,18 @@ def run():
     print(polyfit(dates,levels,4))
     plot_water_level_with_fit(station, dates, levels, 4)
     """
-    for i in range(5):
-        dates, levels = fetch_measure_levels(selected_stations[i+1][0].measure_id, dt)
-        station = selected_stations[i+1]
+    for i in range(6):
+        try:
+            dates, levels = fetch_measure_levels(selected_stations[i][0].measure_id, dt)
+            station = selected_stations[i]
 
-        print("poly and d0 for:")
-        print (str(station[0].name))
-        print(polyfit(dates,levels,4))
-        plot_water_level_with_fit(station, dates, levels, 4)
+            print("poly and d0 for:")
+            print (str(station[0].name))
+            print(polyfit(dates,levels,4))
+            plot_water_level_with_fit(station, dates, levels, 4)
+
+        except:
+            pass
 
     """
     #print values of poly and d0, as well as the graph for station 2 
